@@ -1,0 +1,276 @@
+#profilePage {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  position: relative;
+}
+#profileOuterDiv {
+  /* background-color: #2a273e; */
+  color: white;
+  height: 100%;
+  z-index: 1;
+}
+#banner {
+  width: 100%;
+  max-width: 550px;
+  height: 150px;
+  background-position: 50%;
+  background-size: cover;
+}
+#profileImageDivOuter {
+  display: flex;
+  width: auto;
+  justify-content: space-between;
+  padding: 25px;
+}
+#profileImageDiv {
+  position: relative;
+}
+#profileImage {
+  width: 130px;
+  height: 130px;
+  position: absolute;
+  top: -100px;
+  border-radius: 50%;
+  border: solid #1c1826;
+  background-size: cover;
+  background-position: center;
+}
+
+#editProfileBtn {
+  border: solid #1c1826;
+  padding: 5px;
+  border-radius: 25px;
+  background-color: black;
+  cursor: pointer;
+}
+.profileElement {
+  padding: 25px;
+  padding-top: 0px;
+}
+#usernameDiv {
+  border-left: solid white;
+  font-size: 22px;
+  padding-left: 5px;
+  color: #7ffffa;
+  line-break: anywhere;
+}
+#userBioDiv {
+  font-size: 18px;
+  white-space: break-spaces;
+}
+.countElement {
+  display: flex;
+}
+.outerCountElement {
+  position: relative;
+  /* z-index: 99; */
+}
+.innerCountElement {
+  /* margin-right: 5px;
+  display: flex;
+  border-bottom: solid transparent; */
+  display: flex;
+  margin-right: 5px;
+  border: solid #93c0ff;
+  border-bottom: none;
+  border-radius: 15px 15px 0px 0px;
+  padding: 5px;
+  background: linear-gradient(#646fe6, #9198e5);
+}
+
+.hideInnerCountElement {
+  background: none;
+  border: solid #ffffff00 !important;
+  border-bottom: none;
+  border-radius: 15px 15px 0 0;
+  display: flex;
+  margin-right: 5px;
+  padding: 5px;
+}
+.showInnerCountElement {
+  background: linear-gradient(#646fe6, #9198e5);
+  border: solid #93c0ff;
+  border-bottom: none !important;
+  border-radius: 15px 15px 0 0;
+  display: flex;
+  margin-right: 5px;
+  padding: 5px;
+}
+
+.word {
+  color: #93c0ff;
+}
+.count {
+  margin-right: 5px;
+}
+.innerCountElement:hover {
+  /* border-bottom: solid; */
+  color: white;
+}
+
+#media {
+  margin: 25px;
+  margin-top: 0px;
+  border-top: solid #d3b634;
+  padding-top: 5px;
+}
+
+#ActionButtonsConatiner {
+  min-height: 25px;
+  border-bottom: solid;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+#cross {
+  margin: 15px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+}
+
+#saveBtn {
+  background-color: green;
+  height: 30px;
+  border-radius: 25px;
+  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  user-select: none;
+  cursor: pointer;
+}
+
+#profileEditContainer {
+  display: flex;
+  overflow: auto;
+  overflow-x: hidden;
+  /* border: solid red; */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#previewOuterContainer {
+  display: flex;
+  flex-direction: column;
+  width: calc(50% - 45px);
+}
+
+#userEditsContainer {
+  background-color: #2b273f;
+  margin-right: 25px;
+  padding: 10px;
+  flex-basis: 0;
+  flex-grow: 1;
+  width: 50%;
+}
+
+#userEditsInnerContainer {
+  height: 100%;
+  overflow-y: scroll;
+}
+
+#previewContainer {
+  background-color: #1c1826;
+  border: solid;
+  display: flex;
+  flex-basis: 0;
+  flex-grow: 1;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 5px;
+  position: relative;
+}
+#preview {
+  overflow: auto;
+  background-color: #2a273e;
+  max-width: 300px;
+  width: 78%;
+  z-index: 1;
+}
+
+/* user settings */
+.settingsOptionOuterDiv {
+  align-items: center;
+  display: flex;
+  min-height: 50px;
+  background: linear-gradient(to right, #0000008a, #0000002b);
+  padding-left: 5px;
+  padding-right: 5px;
+  justify-content: space-between;
+}
+.settingsOptionInnerDiv {
+  font-size: 24px;
+  width: 100%;
+}
+.editDivider {
+  height: 4px;
+  background: linear-gradient(90deg, #000000cf, #0000008c);
+  margin-bottom: 10px;
+}
+
+.settingsOptionOuterDivBio {
+  align-items: center;
+  background: linear-gradient(90deg, #0000008a, #0000002b);
+  display: flex;
+  justify-content: space-between;
+  min-height: 50px;
+  padding-left: 5px;
+  padding-right: 5px;
+  flex-direction: column;
+}
+.settingsOptionInnerDivBio {
+  width: 100%;
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+}
+.bioText {
+  width: -webkit-fill-available;
+  padding: 25px;
+  color: gray;
+}
+#textAreaBio {
+  background-color: #18162d;
+  color: #fff;
+  flex-grow: 1;
+  font-size: 16px;
+  line-height: 1;
+  outline: none;
+  padding: 5px;
+  resize: none;
+  width: 556px;
+  height: auto;
+  border: solid black;
+}
+
+#BottomImage {
+  /* width: -webkit-fill-available; */
+  background-position: 50%;
+  background-size: cover;
+  position: absolute;
+  bottom: 5px;
+  height: calc(100% - 10px);
+  width: calc(100% - 10px);
+}
+
+#sendMessage {
+  display: flex;
+  align-items: center;
+  margin-right: 5px;
+  border: solid #1c1826;
+  border-radius: 25px;
+  width: 35px;
+  justify-content: center;
+  padding-left: 2px;
+  background-color: black;
+  cursor: pointer;
+}

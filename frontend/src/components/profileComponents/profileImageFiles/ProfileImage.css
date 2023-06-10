@@ -1,0 +1,60 @@
+.smallIcon-container {
+  border: solid black;
+  padding: 5px;
+  border-radius: 25px;
+  background-color: white;
+}
+.smallIcon {
+  border: solid 1px black;
+  border-radius: 50%;
+}
+.custom-icon-style {
+  line-height: normal;
+  color: black;
+  margin-right: 10px;
+  user-select: none;
+}
+
+.userProfileImageDiv {
+  height: 150px;
+  width: 150px;
+  background-color: black;
+  margin: 30px;
+  position: relative;
+}
+.divImage {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.unSelected {
+  border: solid black;
+}
+.unSelected:hover {
+  border: solid white;
+}
+.selectedImage {
+  border: solid green;
+}
+.selectedImage:hover {
+  border: solid blue;
+}
+.userProfileImage {
+  max-height: 150px;
+  max-width: 150px;
+  width: 100%;
+  display: block;
+}
+.removeImg {
+  position: absolute;
+  top: -17.5px;
+  right: -17.5px;
+  visibility: hidden;
+}
+.userProfileImageDiv:hover .removeImg {
+  visibility: visible;
+}

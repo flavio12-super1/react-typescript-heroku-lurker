@@ -1,0 +1,18 @@
+.displayFlex {
+  display: flex;
+}
+.alighnItemsCenter {
+  align-items: center;
+}
+.width100 {
+  width: 100%;
+}
+.height50 {
+  height: 50px;
+}
+.positionRelative {
+  position: relative;
+}
+.positionAbsolute {
+  position: absolute;
+}

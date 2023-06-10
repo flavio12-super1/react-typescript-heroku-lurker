@@ -1,0 +1,66 @@
+#colorPickerContainer {
+  position: relative;
+}
+.color-picker-input {
+  cursor: pointer;
+  padding: 5px;
+  width: fit-content;
+  border: solid;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  color: black;
+}
+
+.color-picker-input .material-icons {
+  margin-right: 10px;
+  user-select: none;
+}
+
+.color-picker-selected-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  background-color: #1c1826;
+}
+
+.color-picker-popup {
+  z-index: 999;
+  /* top: calc(100% + 10px);
+  left: 0; */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  /* padding: 10px; */
+  position: absolute;
+  top: 45px;
+  right: 0px;
+  padding: 0px;
+  border-radius: 25px;
+  overflow: hidden;
+  padding-top: 25px;
+  background-color: white;
+  border: solid black;
+}
+
+.react-color-picker {
+  box-shadow: none !important;
+}
+
+.react-color-picker > div:first-child {
+  padding: 0 !important;
+  border-radius: 0 !important;
+  border-bottom: none !important;
+}
+
+.react-color-picker input {
+  border: 1px solid #ccc !important;
+  border-radius: 4px !important;
+  padding: 6px !important;
+  font-size: 14px !important;
+}
+
+.react-color-picker > div:last-child {
+  margin-top: 10px !important;
+}

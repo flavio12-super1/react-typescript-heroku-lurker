@@ -1,0 +1,83 @@
+.appContainer {
+  height: 100vh;
+  width: 100vw;
+}
+.App {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  font-size: 24px;
+  justify-content: center;
+  background-color: #d4d2d0;
+  height: 100vh;
+  width: 100vw;
+}
+.leftSide {
+  min-width: 500px;
+  max-width: 500px;
+  height: 100%;
+}
+.rightSide {
+  height: 100%;
+  width: calc(100vw - 500px);
+  overflow-y: scroll;
+  position: relative;
+  background-color: white;
+}
+
+.popup {
+  width: -webkit-fill-available;
+  padding: 15px;
+  border: solid 4px;
+  background-color: gray;
+
+  margin: 20px;
+  margin-left: 5px;
+}
+
+.graphPicker {
+  height: 550px;
+  display: flex;
+}
+
+.mapElelement {
+  position: absolute;
+  z-index: 1;
+  color: blue;
+}
+
+.btn {
+  border-radius: 5px;
+  margin-right: 5px;
+  min-width: 60px;
+}
+.fileOption:hover {
+  background-color: gray;
+}
+.fileOption-selected {
+  background-color: #70ff83;
+}
+
+.tableBorder {
+  min-width: 100px;
+}
+.tableNonBorder {
+  width: -webkit-fill-available;
+}
+.hasRightBorder {
+  border-right: solid black;
+}
+.fileOptionDiv {
+  background-color: #70ff83;
+}
+
+/* start of css for chart */
+.timeFrameDiv {
+  display: flex;
+}
+.timeFrameInnerDivs {
+  display: flex;
+}
+.graphOption {
+  display: flex;
+}

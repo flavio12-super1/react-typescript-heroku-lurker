@@ -1,0 +1,27 @@
+.emoji-picker {
+  border: solid black;
+  border-left: none;
+  padding: 5px;
+  width: 165px;
+  background-color: #4ba8d5;
+}
+.emoji-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+input {
+  background-color: rgb(24, 22, 36);
+  color: white;
+  padding: 5px;
+}
+input::placeholder {
+  color: rgb(91, 91, 91);
+}
+.emoji {
+  background-color: #18162d;
+  margin: 1px;
+  cursor: pointer;
+}
+.emoji:hover {
+  background-color: #2b2740;
+}

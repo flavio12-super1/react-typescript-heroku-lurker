@@ -1,0 +1,20 @@
+#lurkerContainer {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+.inputStyle {
+  display: flex;
+}
+#lurkerPage {
+  background-color: #1c1826;
+  border: 3px solid #000;
+  border-left: none;
+  color: #fff;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+}

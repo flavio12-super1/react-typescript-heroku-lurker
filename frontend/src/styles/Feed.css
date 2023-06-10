@@ -1,0 +1,57 @@
+.feed-container {
+  margin: 20px;
+  position: relative;
+  height: fit-content;
+}
+.feed-inner-container {
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+}
+
+.post-form {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.post-input {
+  flex: 1;
+  padding: 10px;
+}
+
+.post-button {
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.post-heading {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.post-list {
+  list-style-type: none;
+  padding: 0;
+  height: 750px;
+  border: solid 10px green;
+  overflow: auto;
+  position: relative;
+}
+
+.post-item {
+  background-color: #f9f9f9;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  color: black;
+}
+.loading-animation {
+  position: absolute;
+  bottom: 0px;
+  z-index: 2;
+}

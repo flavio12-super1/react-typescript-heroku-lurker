@@ -1,0 +1,71 @@
+.countOverlay {
+  border: solid #93c0ff;
+  border-radius: 0px 15px 15px 15px;
+  height: 300px;
+  left: 0;
+  position: absolute;
+  top: 28px;
+  width: 350px;
+  z-index: -1;
+  background: linear-gradient(#9198e5, #1c18269e);
+}
+
+.user-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.user-card {
+  background-color: #100f12;
+  border: solid black;
+  border-radius: 10px;
+  display: flex;
+  margin: 10px;
+  overflow: auto;
+  width: 310px;
+  margin-bottom: 0px;
+}
+
+.user-info-actions {
+  display: flex;
+  overflow: auto;
+  width: 100%;
+}
+
+.user-info-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.profile-image {
+  height: 55px;
+  width: 55px;
+  display: block;
+}
+
+.username {
+  cursor: pointer;
+  padding: 5px;
+  flex-grow: 1;
+}
+
+.user-info-container :hover {
+  border-color: solid #3a3544;
+}
+
+.user-button {
+  border: none;
+  cursor: pointer;
+  height: -webkit-fill-available;
+  padding: 5px;
+}
+.user-button-following {
+  background-color: #76a7f1;
+}
+.user-button-follow {
+  background-color: #2eda7d;
+}
+
+.user-button:hover {
+  background-color: #d1d1d1;
+}

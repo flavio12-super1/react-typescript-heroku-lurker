@@ -1,0 +1,79 @@
+#notificationsPage {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 5px;
+}
+
+#notificationOuterDiv {
+  display: flex;
+  height: 45px;
+  border: solid black;
+  border-radius: 10px;
+  width: 741px;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+.notificationInformation {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  background-color: black;
+  /* width: 400px; */
+  padding-left: 5px;
+}
+.notificationOptions {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  padding: 5px;
+  background-color: black;
+}
+.notificationEmailBtn {
+  margin: 5px;
+  height: -webkit-fill-available;
+}
+.notificationAcceptBtn {
+  height: 100%;
+  width: 50%;
+  background-color: #272727;
+  border: none;
+  cursor: pointer;
+  margin-right: 5px;
+  border-radius: 4px;
+}
+.notificationAcceptBtn:hover {
+  background-color: rgb(36, 112, 36);
+}
+.notificationDenyBtn {
+  height: 100%;
+  width: 50%;
+  background-color: #272727;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.notificationDenyBtn:hover {
+  background-color: rgb(112, 36, 36);
+}
+#notificationsInnerDiv {
+  background-color: #131423;
+  border: solid #fff;
+  border-radius: 15px;
+  padding: 5px;
+  width: -webkit-fill-available;
+}
+#notificationsNavSearchDivInput {
+  height: 40px;
+  width: -webkit-fill-available;
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 24px;
+}
+input::placeholder {
+  color: rgb(139, 139, 139) !important;
+}
+.friendRequestImageURL {
+  width: 45px;
+}
