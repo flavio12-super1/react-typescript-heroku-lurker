@@ -53,10 +53,10 @@ var store = new MongoDBStore({
 store.on("error", function (error) {
   console.log(error);
 });
-
+const secret = process.env.SESSION_SECRET;
 const sessionMiddleware = session({
   key: "userId",
-  secret: "flavioHerrera",
+  secret: secret,
   resave: false,
   saveUninitialized: false,
   store: store,
@@ -73,7 +73,7 @@ app.use(sessionMiddleware);
 app.use(passport.initialize());
 
 // Configure the Passport strategy for JWT authentication:
-const secret = process.env.SESSION_SECRET;
+const key = process.env.SESSION_KEY;
 const jwt = require("jsonwebtoken");
 
 const JwtStrategy = require("passport-jwt").Strategy;
@@ -81,7 +81,7 @@ const ExtractJwt = require("passport-jwt").ExtractJwt;
 
 const opts = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-  secretOrKey: secret,
+  secretOrKey: key,
 };
 
 passport.use(
@@ -133,7 +133,7 @@ const verifyJWT = (req, res, next) => {
     if (!token) {
       res.send("token not found");
     } else {
-      jwt.verify(token, secret, (err, decoded) => {
+      jwt.verify(token, key, (err, decoded) => {
         if (err) {
           res.json({ auth: false, message: "authentication failed" });
         } else {
@@ -151,7 +151,7 @@ const verify = (req, res, next) => {
   if (req.session && req.session.user && req.session.user.token) {
     const token = req.session.user.token;
 
-    jwt.verify(token, secret, (err, decoded) => {
+    jwt.verify(token, key, (err, decoded) => {
       if (err) {
         res.json({ auth: false, message: "authentication failed" });
       } else {
@@ -246,7 +246,7 @@ app.post("/login", loginLimiter, async (req, res) => {
           .json({ error: "invalid password or incorect password" });
       }
 
-      const token = jwt.sign({ id: user._id }, secret, {
+      const token = jwt.sign({ id: user._id }, key, {
         expiresIn: 60 * 60 * 24,
       });
 
@@ -466,7 +466,7 @@ io.use((socket, next) => {
   // console.log(session);
   if (token) {
     try {
-      const decoded = jwt.verify(token, secret);
+      const decoded = jwt.verify(token, key);
       console.log("decoded id: " + decoded.id);
       socket.userId = decoded.id;
       // socket.session = socket.request.session;
