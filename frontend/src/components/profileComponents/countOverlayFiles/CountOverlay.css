@@ -56,8 +56,10 @@
 .user-button {
   border: none;
   cursor: pointer;
-  height: -webkit-fill-available;
+  /* height: -webkit-fill-available; */
   padding: 5px;
+  height: 55px;
+  margin: 0px;
 }
 .user-button-following {
   background-color: #76a7f1;
