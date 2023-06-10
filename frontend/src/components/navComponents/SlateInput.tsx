@@ -19,7 +19,6 @@ import {
 
 import { withHistory, HistoryEditor } from "slate-history";
 import { EventContext } from "./Messages";
-import { is } from "immutable";
 
 type CustomElement = { type: "paragraph"; children: CustomText[] };
 type CustomText = { text: string; bold?: true };
