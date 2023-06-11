@@ -176,7 +176,25 @@ const userSchema = new mongoose.Schema(
       },
     ],
     theme: { type: themeSchema, required: true },
-    posts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Post" }], // Reference the posts using their IDs
+    // posts: [
+
+    //   {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: "Post",
+    //   },
+
+    // ], // Reference the posts using their IDs
+    posts: [
+      {
+        id: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Post",
+        },
+        createdAt: {
+          type: Date,
+        },
+      },
+    ],
   },
   { strict: true }
 );

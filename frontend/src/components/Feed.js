@@ -53,6 +53,11 @@ const PostItem = ({
 }) => {
   return (
     <div className="post-item">
+      <div>
+        <img src={post.user?.imageURL} style={{ width: "55px" }} />
+      </div>
+      <div>Creation Date: {post.createdAt}</div>
+      <div>Username: {post.user?.username}</div>
       <div>Post ID: {post.replyId}</div>
       {parentPostId && <div>Parent ID: {parentPostId}</div>}
       {topLevelId && <div>Top Level ID: {topLevelId}</div>}
