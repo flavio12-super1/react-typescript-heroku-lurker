@@ -88,6 +88,23 @@ const replySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+
+  pollOptions: [
+    {
+      options: [{ type: Object }],
+      votes: [
+        {
+          userID: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+          },
+          option: {
+            type: String,
+          },
+        },
+      ],
+    },
+  ],
   createdAt: {
     type: Date,
     default: Date.now,
@@ -100,7 +117,7 @@ const replySchema = new mongoose.Schema({
   ],
 });
 
-const Reply = mongoose.model("Reply", replySchema);
+const Reply = mongoose.model("Reply", replySchema, "userPosts");
 
 const postSchema = new mongoose.Schema({
   user: {
@@ -127,7 +144,7 @@ const postSchema = new mongoose.Schema({
   ],
 });
 
-const Post = mongoose.model("Post", postSchema);
+const Post = mongoose.model("Post", postSchema, "userPosts");
 
 const userSchema = new mongoose.Schema(
   {
@@ -176,14 +193,6 @@ const userSchema = new mongoose.Schema(
       },
     ],
     theme: { type: themeSchema, required: true },
-    // posts: [
-
-    //   {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: "Post",
-    //   },
-
-    // ], // Reference the posts using their IDs
     posts: [
       {
         id: {

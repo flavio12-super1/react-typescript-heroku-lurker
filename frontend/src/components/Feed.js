@@ -6,6 +6,36 @@ import loadingImg from "./loading.gif";
 const ReplyForm = ({ postId, parentReplyId, handleReplySubmit }) => {
   const [content, setContent] = useState("");
 
+  const [poll, setPoll] = useState(false);
+  const [pollOptions, setPollOptions] = useState([]);
+  const [newOption, setNewOption] = useState("");
+
+  const handleOptionChange = (event, index) => {
+    const updatedOptions = [...pollOptions];
+    updatedOptions[index] = event.target.value;
+    setPollOptions(updatedOptions);
+  };
+
+  const handleAddOption = () => {
+    if (pollOptions.length >= 4) return; // Limit the number of options to 4
+    setPollOptions([...pollOptions, newOption]);
+    setNewOption("");
+  };
+
+  const handleRemoveOption = (index) => {
+    const updatedOptions = [...pollOptions];
+    updatedOptions.splice(index, 1);
+    setPollOptions(updatedOptions);
+  };
+
+  useEffect(() => {
+    console.log(pollOptions);
+  }, [pollOptions]);
+
+  const handlePoll = () => {
+    setPoll(!poll);
+  };
+
   const handleInputChange = (event) => {
     setContent(event.target.value);
   };
@@ -14,34 +44,86 @@ const ReplyForm = ({ postId, parentReplyId, handleReplySubmit }) => {
     event.preventDefault();
 
     try {
+      console.log("pollOptions", pollOptions);
       const response = await axiosInstance.post(
         `/userPosts/${postId}/replies`,
         {
           content,
           parentReplyId,
+          pollOptions,
         }
       );
 
       handleReplySubmit(response.data);
       setContent("");
+      setPollOptions([]);
     } catch (error) {
       console.error(error);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="reply-form">
-      <input
-        type="text"
-        value={content}
-        onChange={handleInputChange}
-        placeholder="Enter reply content"
-        className="reply-input"
-      />
-      <button type="submit" className="reply-button">
-        Reply: {parentReplyId}
-      </button>
-    </form>
+    <div>
+      <div>
+        {poll ? (
+          <div>
+            <div className="poll-options">
+              {pollOptions.map((option, index) => (
+                <div key={index} className="poll-option">
+                  <input
+                    type="text"
+                    value={option}
+                    onChange={(event) => handleOptionChange(event, index)}
+                    placeholder={`Option ${index + 1}`}
+                    className="poll-input"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => handleRemoveOption(index)}
+                    className="remove-option"
+                  >
+                    Remove
+                  </button>
+                </div>
+              ))}
+              {pollOptions.length < 4 && (
+                <div className="add-option">
+                  <input
+                    type="text"
+                    value={newOption}
+                    onChange={(event) => setNewOption(event.target.value)}
+                    placeholder="Add Option"
+                    className="poll-input"
+                  />
+                  <button
+                    type="button"
+                    onClick={handleAddOption}
+                    className="add-button"
+                  >
+                    Add
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+        ) : null}
+      </div>
+      <div>
+        <form onSubmit={handleSubmit} className="reply-form">
+          <input
+            type="text"
+            value={content}
+            onChange={handleInputChange}
+            placeholder="Enter reply content"
+            className="reply-input"
+          />
+          <button type="submit" className="reply-button">
+            Reply: {parentReplyId}
+          </button>
+        </form>
+        <button onClick={handlePoll}>add poll</button>
+      </div>
+    </div>
   );
 };
 
@@ -51,6 +133,26 @@ const PostItem = ({
   parentPostId = null,
   topLevelId = null,
 }) => {
+  const [showReplyForm, setShowReplyForm] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const toggleReplyForm = () => {
+    setShowReplyForm(!showReplyForm);
+  };
+
+  const handleOptionClick = (option, postID) => {
+    setSelectedOption(option);
+    // Make a request to the backend to update the poll option count
+    // You can use the `axiosInstance` or any other HTTP client library
+    // to send a request to the backend API and update the poll option count.
+    // Example:
+    axiosInstance.post(`/userPosts/${postID}/vote`, { option });
+  };
+
+  useEffect(() => {
+    console.log(selectedOption);
+  }, [selectedOption]);
+
   return (
     <div className="post-item">
       <div>
@@ -62,12 +164,46 @@ const PostItem = ({
       {parentPostId && <div>Parent ID: {parentPostId}</div>}
       {topLevelId && <div>Top Level ID: {topLevelId}</div>}
       <div>Content: {post.content}</div>
-      <ReplyForm
-        postId={topLevelId || post.replyId} // Pass topLevelId or post._id as postId
-        // parentReplyId={post._id} // Pass post._id as parentReplyId
-        parentReplyId={post.replyId} // Pass post._id as parentReplyId
-        handleReplySubmit={handleReplySubmit}
-      />
+      {post.pollOptions && post.pollOptions.length > 0 && (
+        <div className="poll-options">
+          {/* {post.pollOptions.map((option, index) => (
+            <div
+              key={index}
+              className={`poll-option${
+                selectedOption === option ? " selected" : ""
+              }`}
+              onClick={() => handleOptionClick(option)}
+            >
+              {option.options}
+            </div>
+          ))} */}
+          {post.pollOptions.map((option, index) => (
+            <div>
+              {Object.values(option.options).map((optionValue, optionIndex) => (
+                <div
+                  key={index}
+                  className={`poll-option${
+                    selectedOption === optionValue ? " selected" : ""
+                  }`}
+                  onClick={() => handleOptionClick(optionValue, post.replyId)}
+                >
+                  <span key={optionIndex}>{optionValue}</span>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      )}
+      {showReplyForm && (
+        <ReplyForm
+          postId={topLevelId || post.replyId}
+          parentReplyId={post.replyId}
+          handleReplySubmit={handleReplySubmit}
+        />
+      )}
+      <button onClick={toggleReplyForm}>
+        {showReplyForm ? "Cancel" : "Reply"}
+      </button>
       {post.replies &&
         post.replies.map((reply) => (
           <PostItem

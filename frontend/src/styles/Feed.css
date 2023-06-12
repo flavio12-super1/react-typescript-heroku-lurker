@@ -49,9 +49,43 @@
   margin-bottom: 10px;
   border-radius: 5px;
   color: black;
+  position: relative;
+}
+.reply-item {
+  position: relative;
+  left: 10px;
 }
 .loading-animation {
   position: absolute;
   bottom: 0px;
   z-index: 2;
+}
+
+.poll-options {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: solid black;
+  padding: 5px;
+  border-radius: 15px;
+  background-color: #1c1826;
+  color: white;
+}
+
+.poll-option {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+.poll-option.selected {
+  background-color: #561c72;
+}
+
+.poll-option:hover {
+  background-color: #813fa0;
+}
+
+.poll-option-count {
+  margin-left: 10px;
 }
