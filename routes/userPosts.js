@@ -123,13 +123,6 @@ router.get("/", async (req, res) => {
         nestedReplies.map(async (nestedReply) => {
           const nestedUser = await User.findById(nestedReply.user);
           // Check if req.userId has voted on any of the polls attached to the reply
-          // const hasVoted = nestedReply.pollOptions.some((pollOption) => {
-          //   return pollOption.votes.some((vote) => {
-          //     return vote.userID.toString() === req.userId;
-          //   });
-          // });
-
-          // console.log(hasVoted);
           const nestedReplies = await retrieveNestedReplies(
             nestedReply,
             nestedUser
@@ -162,26 +155,6 @@ router.get("/", async (req, res) => {
             const nestedReplies = await retrieveNestedReplies(reply, replyUser);
 
             // //start here
-            // console.log(...reply.toObject().pollOptions);
-
-            // const pollOptions = reply.toObject().pollOptions;
-            // // Count the votes for each poll option
-            // const voteCounts = {};
-            // pollOptions.forEach((pollOption) => {
-            //   const option = pollOption.options;
-            //   voteCounts[option] = 0;
-            // });
-            // console.log("Vote Counts:", voteCounts);
-
-            // const pollOptions = reply.toObject().pollOptions;
-            // // Count the votes for each poll option
-            // const voteCounts = {};
-            // pollOptions.forEach((pollOption) => {
-            //   pollOption.options.forEach((option) => {
-            //     voteCounts[option] = 0;
-            //   });
-            // });
-            // console.log("Vote Counts:", voteCounts);
             const pollOptions = reply.toObject().pollOptions;
             // Count the votes for each poll option
             const voteCounts = {};
@@ -308,28 +281,6 @@ const generateRandomString = (length) => {
   return crypto.randomBytes(length).toString("hex");
 };
 
-// router.post("/:postId/vote", async (req, res) => {
-//   try {
-//     const { postId } = req.params;
-//     const { option } = req.body;
-
-//     console.log(postId);
-//     console.log(option);
-
-//     // Find the post containing the replyId
-//     const post = await Reply.findOne({ replyId: postId });
-//     if (!post) {
-//       return res.status(404).json({ error: "Post not found" });
-//     }
-
-//     console.log("post: " + post);
-
-//     res.json("success");
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: "Internal server error" });
-//   }
-// });
 router.post("/:postId/vote", async (req, res) => {
   try {
     const { postId } = req.params;
@@ -371,7 +322,6 @@ router.post("/:postId/vote", async (req, res) => {
         // User has voted for a different option, remove the old vote
         console.log("Removing old vote");
         console.log("Existing Vote:", existingVote);
-        // post.pollOptions[existingVoteIndex].votes.pull(existingVote._id);
 
         const updatedPoll = await Reply.findOneAndUpdate(
           { replyId: postId },
@@ -409,8 +359,6 @@ router.post("/:postId/vote", async (req, res) => {
     if (!updatedPoll) {
       console.log("Post not found");
     }
-
-    // res.json({ message: "Vote added successfully" });
 
     res.json("success");
   } catch (error) {
