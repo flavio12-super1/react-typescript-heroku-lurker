@@ -83,8 +83,12 @@
   background-color: #1dbaca;
 }
 
-.poll-option:hover {
+.poll-option-container:hover .poll-option {
   background-color: #813fa0;
+}
+
+.poll-option-container:hover {
+  background-color: #bf74e1;
 }
 
 .poll-option-count {

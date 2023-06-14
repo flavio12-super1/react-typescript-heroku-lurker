@@ -226,11 +226,12 @@ router.get("/", async (req, res) => {
 router.post("/:postId/replies", async (req, res) => {
   try {
     const { postId } = req.params;
-    const { content, parentReplyId } = req.body;
+    const { content, parentReplyId, image } = req.body;
 
     console.log(postId);
     console.log(content);
     console.log(parentReplyId);
+    console.log("image: " + image);
 
     // Find the post containing the replyId
     const post = await Post.findOne({ replyId: postId });
@@ -244,11 +245,14 @@ router.post("/:postId/replies", async (req, res) => {
     const newReply = new Reply({
       user: req.userId, // Assuming you have an authenticated user available
       content,
+      image: image,
       pollOptions: { options: req.body.pollOptions },
       createdAt: Date.now(),
       replyId: generateRandomString(12), // Generate random string for replyId
       replies: [], // Initialize replies as an empty array
     });
+
+    console.log(newReply);
 
     // Check if the parentReplyId is provided
     if (parentReplyId !== postId) {

@@ -2,11 +2,13 @@ import React, { useState, useEffect, useRef } from "react";
 import axiosInstance from "../config/axiosConfig";
 import "../styles/Feed.css"; // Import the CSS file for styling
 import loadingImg from "./loading.gif";
+import FileUpload from "./feedComponents/FileUpload";
 
 const ReplyForm = ({ postId, parentReplyId, handleReplySubmit }) => {
   const [content, setContent] = useState("");
 
   const [poll, setPoll] = useState(false);
+  const [image, setImage] = useState(false);
   const [pollOptions, setPollOptions] = useState([]);
   const [newOption, setNewOption] = useState("");
 
@@ -35,6 +37,18 @@ const ReplyForm = ({ postId, parentReplyId, handleReplySubmit }) => {
   const handlePoll = () => {
     setPoll(!poll);
   };
+  const handleImage = () => {
+    setImage(!image);
+  };
+
+  const [imageURL, setImageURL] = useState("");
+  const [files, setFiles] = useState([]);
+
+  useEffect(() => {
+    if (imageURL != "") {
+      console.log(imageURL);
+    }
+  }, [imageURL]);
 
   const handleInputChange = (event) => {
     setContent(event.target.value);
@@ -43,20 +57,72 @@ const ReplyForm = ({ postId, parentReplyId, handleReplySubmit }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    try {
-      console.log("pollOptions", pollOptions);
-      const response = await axiosInstance.post(
-        `/userPosts/${postId}/replies`,
-        {
-          content,
-          parentReplyId,
-          pollOptions,
-        }
-      );
+    // try {
+    //   const formData = new FormData();
+    //   formData.append("image", files[0]);
+    //   await axiosInstance.post("/api/posts", formData).then((res) => {
+    //     console.log(res.data);
+    //     setImageURL(res.data);
+    //   });
 
-      handleReplySubmit(response.data);
-      setContent("");
-      setPollOptions([]);
+    //   console.log("pollOptions", pollOptions);
+    //   const response = await axiosInstance.post(
+    //     `/userPosts/${postId}/replies`,
+    //     {
+    //       content,
+    //       parentReplyId,
+    //       pollOptions,
+    //       image: imgaeURL,
+    //     }
+    //   );
+
+    //   handleReplySubmit(response.data);
+    //   setContent("");
+    //   setPollOptions([]);
+    //   setFiles([]);
+    // } catch (error) {
+    //   console.error(error);
+    // }
+    try {
+      const formData = new FormData();
+      if (files[0] != null) {
+        formData.append("image", files[0]);
+        const res = await axiosInstance.post("/api/posts", formData);
+        console.log(res.data);
+        setImageURL(res.data);
+
+        console.log("pollOptions", pollOptions);
+        const response = await axiosInstance.post(
+          `/userPosts/${postId}/replies`,
+          {
+            content,
+            parentReplyId,
+            pollOptions,
+            image: res.data,
+          }
+        );
+
+        handleReplySubmit(response.data);
+        setContent("");
+        setPollOptions([]);
+        setFiles([]);
+      } else {
+        console.log("pollOptions", pollOptions);
+        const response = await axiosInstance.post(
+          `/userPosts/${postId}/replies`,
+          {
+            content,
+            parentReplyId,
+            pollOptions,
+            image: "",
+          }
+        );
+
+        handleReplySubmit(response.data);
+        setContent("");
+        setPollOptions([]);
+        setFiles([]);
+      }
     } catch (error) {
       console.error(error);
     }
@@ -107,6 +173,13 @@ const ReplyForm = ({ postId, parentReplyId, handleReplySubmit }) => {
             </div>
           </div>
         ) : null}
+        {image ? (
+          <FileUpload
+            setImageURL={setImageURL}
+            files={files}
+            setFiles={setFiles}
+          />
+        ) : null}
       </div>
       <div>
         <form onSubmit={handleSubmit} className="reply-form">
@@ -121,7 +194,13 @@ const ReplyForm = ({ postId, parentReplyId, handleReplySubmit }) => {
             Reply: {parentReplyId}
           </button>
         </form>
-        <button onClick={handlePoll}>add poll</button>
+        <button onClick={handlePoll}>
+          {poll ? "remove poll" : "add poll"}
+        </button>
+
+        <button onClick={handleImage}>
+          {image ? "remove image" : "add image"}
+        </button>
       </div>
     </div>
   );
@@ -145,9 +224,6 @@ const PostItem = ({
     post.pollOption = option;
 
     // Make a request to the backend to update the poll option count
-    // You can use the `axiosInstance` or any other HTTP client library
-    // to send a request to the backend API and update the poll option count.
-    // Example:
     axiosInstance.post(`/userPosts/${postID}/vote`, { option });
   };
 
@@ -166,46 +242,7 @@ const PostItem = ({
       {parentPostId && <div>Parent ID: {parentPostId}</div>}
       {topLevelId && <div>Top Level ID: {topLevelId}</div>}
       <div>Content: {post.content}</div>
-      {/* {post.pollOptions && post.pollOptions.length > 0 && (
-        <div className="poll-options">
-          {post.pollOptions.map((option, index) => (
-            <div>
-              {Object.values(option.options).map((optionValue, optionIndex) => (
-                <div
-                  key={index}
-                  className={`poll-option${
-                    selectedOption === optionValue ? " selected" : ""
-                  }`}
-                  onClick={() => handleOptionClick(optionValue, post.replyId)}
-                >
-                  <span key={optionIndex}>{optionValue}</span>
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
-      )} */}
-      {/* {Object.keys(post.voteCounts ?? {}).length > 0 && (
-        <div className="poll-options">
-          {Object.entries(post.voteCounts).map(([option, count]) => (
-            <div
-              key={option}
-              className={`poll-option${
-                selectedOption === option
-                  ? " selected"
-                  : "" || post.pollOption === option
-                  ? " selected"
-                  : ""
-              }`}
-              onClick={() => handleOptionClick(option, post.replyId, post)}
-            >
-              <span>{option}</span>
-              <span className="count">{count}</span>
-            </div>
-          ))}
-        </div>
-      )} */}
-
+      <div>image: {post.image ? <img src={post.image} /> : null}</div>
       {Object.keys(post.voteCounts ?? {}).length > 0 && (
         <div className="poll-options">
           {Object.entries(post.voteCounts).map(([option, count]) => {
@@ -216,28 +253,46 @@ const PostItem = ({
             const percentage = totalVotes > 0 ? (count / totalVotes) * 100 : 0;
 
             return (
-              <div style={{ display: "flex" }}>
-                <div style={{ width: "500px" }}>
+              <div>
+                <div style={{ display: "flex" }}>
                   <div
-                    key={option}
-                    className={`poll-option${
-                      selectedOption === option || post.pollOption === option
-                        ? " selected"
-                        : ""
-                    }`}
+                    style={{ minWidth: "500px" }}
                     onClick={() =>
                       handleOptionClick(option, post.replyId, post)
                     }
-                    style={{ width: `${percentage}%`, height: "20px" }}
-                  ></div>
-                </div>
-                <div>
-                  <span>{option}</span>
-                  <span className="count">({percentage.toFixed(1)}%)</span>
+                    className="poll-option-container"
+                  >
+                    <div
+                      key={option}
+                      className={`poll-option${
+                        selectedOption === option || post.pollOption === option
+                          ? " selected"
+                          : ""
+                      }`}
+                      style={{ width: `${percentage}%`, height: "20px" }}
+                    >
+                      {post.pollOption === option ? (
+                        <span style={{ color: "black" }}>selected</span>
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                  </div>
+                  <div>
+                    <span>{option}</span>
+                    <span className="count">({percentage.toFixed(1)}%)</span>
+                  </div>
                 </div>
               </div>
             );
           })}
+          <div>
+            {Object.values(post.voteCounts).reduce(
+              (total, count) => total + count,
+              0
+            )}
+            votes
+          </div>
         </div>
       )}
 

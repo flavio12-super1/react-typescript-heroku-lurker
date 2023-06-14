@@ -88,7 +88,7 @@ const replySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-
+  image: { type: String },
   pollOptions: [
     {
       options: [{ type: Object }],
