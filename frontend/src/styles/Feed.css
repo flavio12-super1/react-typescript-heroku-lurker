@@ -76,10 +76,11 @@
   align-items: center;
   margin-bottom: 5px;
   cursor: pointer;
+  background-color: #8dd0d3;
 }
 
 .poll-option.selected {
-  background-color: #561c72;
+  background-color: #1dbaca;
 }
 
 .poll-option:hover {

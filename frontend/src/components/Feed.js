@@ -185,7 +185,7 @@ const PostItem = ({
           ))}
         </div>
       )} */}
-      {Object.keys(post.voteCounts ?? {}).length > 0 && (
+      {/* {Object.keys(post.voteCounts ?? {}).length > 0 && (
         <div className="poll-options">
           {Object.entries(post.voteCounts).map(([option, count]) => (
             <div
@@ -203,6 +203,41 @@ const PostItem = ({
               <span className="count">{count}</span>
             </div>
           ))}
+        </div>
+      )} */}
+
+      {Object.keys(post.voteCounts ?? {}).length > 0 && (
+        <div className="poll-options">
+          {Object.entries(post.voteCounts).map(([option, count]) => {
+            const totalVotes = Object.values(post.voteCounts).reduce(
+              (total, count) => total + count,
+              0
+            );
+            const percentage = totalVotes > 0 ? (count / totalVotes) * 100 : 0;
+
+            return (
+              <div style={{ display: "flex" }}>
+                <div style={{ width: "500px" }}>
+                  <div
+                    key={option}
+                    className={`poll-option${
+                      selectedOption === option || post.pollOption === option
+                        ? " selected"
+                        : ""
+                    }`}
+                    onClick={() =>
+                      handleOptionClick(option, post.replyId, post)
+                    }
+                    style={{ width: `${percentage}%`, height: "20px" }}
+                  ></div>
+                </div>
+                <div>
+                  <span>{option}</span>
+                  <span className="count">({percentage.toFixed(1)}%)</span>
+                </div>
+              </div>
+            );
+          })}
         </div>
       )}
 
