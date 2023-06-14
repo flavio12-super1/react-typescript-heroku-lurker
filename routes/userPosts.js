@@ -123,13 +123,13 @@ router.get("/", async (req, res) => {
         nestedReplies.map(async (nestedReply) => {
           const nestedUser = await User.findById(nestedReply.user);
           // Check if req.userId has voted on any of the polls attached to the reply
-          const hasVoted = nestedReply.pollOptions.some((pollOption) => {
-            return pollOption.votes.some((vote) => {
-              return vote.userID.toString() === req.userId;
-            });
-          });
+          // const hasVoted = nestedReply.pollOptions.some((pollOption) => {
+          //   return pollOption.votes.some((vote) => {
+          //     return vote.userID.toString() === req.userId;
+          //   });
+          // });
 
-          console.log(hasVoted);
+          // console.log(hasVoted);
           const nestedReplies = await retrieveNestedReplies(
             nestedReply,
             nestedUser
@@ -160,14 +160,76 @@ router.get("/", async (req, res) => {
           replies.map(async (reply) => {
             const replyUser = await User.findById(reply.user);
             const nestedReplies = await retrieveNestedReplies(reply, replyUser);
+
+            // //start here
+            // console.log(...reply.toObject().pollOptions);
+
+            // const pollOptions = reply.toObject().pollOptions;
+            // // Count the votes for each poll option
+            // const voteCounts = {};
+            // pollOptions.forEach((pollOption) => {
+            //   const option = pollOption.options;
+            //   voteCounts[option] = 0;
+            // });
+            // console.log("Vote Counts:", voteCounts);
+
+            // const pollOptions = reply.toObject().pollOptions;
+            // // Count the votes for each poll option
+            // const voteCounts = {};
+            // pollOptions.forEach((pollOption) => {
+            //   pollOption.options.forEach((option) => {
+            //     voteCounts[option] = 0;
+            //   });
+            // });
+            // console.log("Vote Counts:", voteCounts);
+            const pollOptions = reply.toObject().pollOptions;
+            // Count the votes for each poll option
+            const voteCounts = {};
+            pollOptions.forEach((pollOption) => {
+              pollOption.options.forEach((option) => {
+                voteCounts[option] = pollOption.votes.filter(
+                  (vote) => vote.option === option
+                ).length;
+              });
+            });
+            console.log("Vote Counts:", voteCounts);
+
+            // Check if the user has already voted
+            const existingVoteIndex = reply
+              .toObject()
+              .pollOptions.findIndex((pollOption) => {
+                return pollOption.votes.some(
+                  (vote) => vote.userID.toString() === req.userId
+                );
+              });
+
+            console.log("Existing Vote Index:", existingVoteIndex);
+
+            // Start here
+            let userVoteOption = null;
+            if (existingVoteIndex !== -1) {
+              const existingVote =
+                reply.toObject().pollOptions[existingVoteIndex];
+              const userVote = existingVote.votes.find(
+                (vote) => vote.userID.toString() === req.userId
+              );
+              userVoteOption = userVote.option;
+            }
+
+            console.log("User's Vote Option:", userVoteOption);
+            //end here
+
             return {
               ...reply.toObject(),
+              pollOptions: undefined, // Remove the pollOptions property
               replies: nestedReplies,
               user: {
                 id: replyUser._id,
                 username: replyUser.email,
                 imageURL: replyUser.theme.imageURL,
               },
+              pollOption: userVoteOption,
+              voteCounts: voteCounts,
             };
           })
         );

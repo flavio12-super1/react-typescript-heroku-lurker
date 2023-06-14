@@ -140,8 +140,10 @@ const PostItem = ({
     setShowReplyForm(!showReplyForm);
   };
 
-  const handleOptionClick = (option, postID) => {
+  const handleOptionClick = (option, postID, post) => {
     setSelectedOption(option);
+    post.pollOption = option;
+
     // Make a request to the backend to update the poll option count
     // You can use the `axiosInstance` or any other HTTP client library
     // to send a request to the backend API and update the poll option count.
@@ -164,19 +166,8 @@ const PostItem = ({
       {parentPostId && <div>Parent ID: {parentPostId}</div>}
       {topLevelId && <div>Top Level ID: {topLevelId}</div>}
       <div>Content: {post.content}</div>
-      {post.pollOptions && post.pollOptions.length > 0 && (
+      {/* {post.pollOptions && post.pollOptions.length > 0 && (
         <div className="poll-options">
-          {/* {post.pollOptions.map((option, index) => (
-            <div
-              key={index}
-              className={`poll-option${
-                selectedOption === option ? " selected" : ""
-              }`}
-              onClick={() => handleOptionClick(option)}
-            >
-              {option.options}
-            </div>
-          ))} */}
           {post.pollOptions.map((option, index) => (
             <div>
               {Object.values(option.options).map((optionValue, optionIndex) => (
@@ -193,7 +184,28 @@ const PostItem = ({
             </div>
           ))}
         </div>
+      )} */}
+      {Object.keys(post.voteCounts ?? {}).length > 0 && (
+        <div className="poll-options">
+          {Object.entries(post.voteCounts).map(([option, count]) => (
+            <div
+              key={option}
+              className={`poll-option${
+                selectedOption === option
+                  ? " selected"
+                  : "" || post.pollOption === option
+                  ? " selected"
+                  : ""
+              }`}
+              onClick={() => handleOptionClick(option, post.replyId, post)}
+            >
+              <span>{option}</span>
+              <span className="count">{count}</span>
+            </div>
+          ))}
+        </div>
       )}
+
       {showReplyForm && (
         <ReplyForm
           postId={topLevelId || post.replyId}
