@@ -1,10 +1,8 @@
-import React, { useContext, useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axiosInstance from "../config/axiosConfig";
 import "../styles/Feed.css"; // Import the CSS file for styling
 import loadingImg from "./loading.gif";
-import CreatePost from "./feedComponents/CreatePost";
 import FileUpload from "./feedComponents/FileUpload";
-import { UserContext } from "./Lurker";
 
 const ReplyForm = ({ postId, parentReplyId, handleReplySubmit }) => {
   const [content, setContent] = useState("");
@@ -59,6 +57,32 @@ const ReplyForm = ({ postId, parentReplyId, handleReplySubmit }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    // try {
+    //   const formData = new FormData();
+    //   formData.append("image", files[0]);
+    //   await axiosInstance.post("/api/posts", formData).then((res) => {
+    //     console.log(res.data);
+    //     setImageURL(res.data);
+    //   });
+
+    //   console.log("pollOptions", pollOptions);
+    //   const response = await axiosInstance.post(
+    //     `/userPosts/${postId}/replies`,
+    //     {
+    //       content,
+    //       parentReplyId,
+    //       pollOptions,
+    //       image: imgaeURL,
+    //     }
+    //   );
+
+    //   handleReplySubmit(response.data);
+    //   setContent("");
+    //   setPollOptions([]);
+    //   setFiles([]);
+    // } catch (error) {
+    //   console.error(error);
+    // }
     try {
       const formData = new FormData();
       if (files[0] != null) {
@@ -219,8 +243,12 @@ const PostItem = ({
       </div>
       <div>Creation Date: {post.createdAt}</div>
       <div>Username: {post.user?.username}</div>
+      {/* <div>Post ID: {post.replyId}</div>
+      {parentPostId && <div>Parent ID: {parentPostId}</div>}
+      {topLevelId && <div>Top Level ID: {topLevelId}</div>} */}
       <div>Content: {post.content}</div>
       <div>
+        {/* image: */}
         {post.image ? (
           <img src={post.image} style={{ width: "200px" }} />
         ) : null}
@@ -308,8 +336,6 @@ const PostItem = ({
 };
 
 const Feed = () => {
-  const userData = useContext(UserContext);
-  const { self } = userData;
   const [content, setContent] = useState("");
   const [posts, setPosts] = useState([]);
   const [page, setPage] = useState(1);
@@ -402,13 +428,20 @@ const Feed = () => {
   return (
     <div className="feed-container">
       <div className="feed-inner-container">
-        <div className="post-list" onScroll={handleScroll} ref={postListRef}>
-          <CreatePost
-            handleSubmit={handleSubmit}
-            handleInputChange={handleInputChange}
-            content={content}
-            self={self}
+        <form onSubmit={handleSubmit} className="post-form">
+          <input
+            type="text"
+            value={content}
+            onChange={handleInputChange}
+            placeholder="Enter post content"
+            className="post-input"
           />
+          <button type="submit" className="post-button">
+            Submit
+          </button>
+        </form>
+        <h2 className="post-heading">Posts:</h2>
+        <div className="post-list" onScroll={handleScroll} ref={postListRef}>
           <div>
             {posts.map((post) => (
               <PostItem

@@ -1,12 +1,13 @@
 .feed-container {
-  margin: 20px;
   position: relative;
-  height: fit-content;
+  height: 100%;
 }
 .feed-inner-container {
   display: flex;
   flex-direction: column;
   z-index: 1;
+  height: -webkit-fill-available;
+  padding: 20px;
 }
 
 .post-form {
@@ -37,7 +38,6 @@
 .post-list {
   list-style-type: none;
   padding: 0;
-  height: 750px;
   border: solid 10px green;
   overflow: auto;
   position: relative;

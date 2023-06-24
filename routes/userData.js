@@ -103,6 +103,8 @@ router.post("/", async (req, res, next) => {
     const channelWithUsername = await getChannel(channels, req.userId);
 
     res.json({
+      userName: user.email,
+      theme: user.theme,
       notifications: notificationsWithUsername,
       channels: channelWithUsername,
       following: following,

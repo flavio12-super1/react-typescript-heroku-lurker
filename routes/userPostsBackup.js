@@ -118,7 +118,7 @@ router.get("/", async (req, res) => {
 
     // Function to recursively retrieve nested replies for a reply
     const retrieveNestedReplies = async (reply, user) => {
-      const nestedReplies = await Post.find({ _id: { $in: reply.replies } });
+      const nestedReplies = await Reply.find({ _id: { $in: reply.replies } });
       const nestedRepliesWithNested = await Promise.all(
         nestedReplies.map(async (nestedReply) => {
           const nestedUser = await User.findById(nestedReply.user);
@@ -127,56 +127,15 @@ router.get("/", async (req, res) => {
             nestedReply,
             nestedUser
           );
-
-          // //start here
-          const pollOptions = nestedReply.toObject().pollOptions;
-          // Count the votes for each poll option
-          const voteCounts = {};
-          pollOptions.forEach((pollOption) => {
-            pollOption.options.forEach((option) => {
-              voteCounts[option] = pollOption.votes.filter(
-                (vote) => vote.option === option
-              ).length;
-            });
-          });
-          console.log("Vote Counts:", voteCounts);
-
-          // Check if the user has already voted
-          const existingVoteIndex = nestedReply
-            .toObject()
-            .pollOptions.findIndex((pollOption) => {
-              return pollOption.votes.some(
-                (vote) => vote.userID.toString() === req.userId
-              );
-            });
-
-          console.log("Existing Vote Index:", existingVoteIndex);
-
-          // check if user has voted
-          let userVoteOption = null;
-          if (existingVoteIndex !== -1) {
-            const existingVote =
-              nestedReply.toObject().pollOptions[existingVoteIndex];
-            const userVote = existingVote.votes.find(
-              (vote) => vote.userID.toString() === req.userId
-            );
-            userVoteOption = userVote.option;
-          }
-
-          console.log("User's Vote Option:", userVoteOption);
-          //end here
           return {
             ...nestedReply.toObject(),
             replies: nestedReplies,
-            pollOptions: undefined, // Remove the pollOptions property
             // user: nestedUser,
             user: {
               id: nestedUser._id,
               username: nestedUser.email,
               imageURL: nestedUser.theme.imageURL,
             },
-            pollOption: userVoteOption,
-            voteCounts: voteCounts,
           };
         })
       );
@@ -189,7 +148,7 @@ router.get("/", async (req, res) => {
         const postUser = allPostData.find((postData) =>
           postData.id.equals(post._id)
         ).user;
-        const replies = await Post.find({ _id: { $in: post.replies } });
+        const replies = await Reply.find({ _id: { $in: post.replies } });
         const repliesWithNested = await Promise.all(
           replies.map(async (reply) => {
             const replyUser = await User.findById(reply.user);
@@ -219,7 +178,7 @@ router.get("/", async (req, res) => {
 
             console.log("Existing Vote Index:", existingVoteIndex);
 
-            // check if user has voted
+            // Start here
             let userVoteOption = null;
             if (existingVoteIndex !== -1) {
               const existingVote =
@@ -298,7 +257,7 @@ router.post("/:postId/replies", async (req, res) => {
     // Check if the parentReplyId is provided
     if (parentReplyId !== postId) {
       // Find the parent reply in the post's replies array
-      const parentReply = await Post.findOne({ replyId: parentReplyId });
+      const parentReply = await Reply.findOne({ replyId: parentReplyId });
       if (!parentReply) {
         return res.status(404).json({ error: "Parent reply not found" });
       }
@@ -333,7 +292,7 @@ router.post("/:postId/vote", async (req, res) => {
     const userId = req.userId;
 
     // Find the post containing the replyId
-    const post = await Post.findOne({ replyId: postId });
+    const post = await Reply.findOne({ replyId: postId });
     if (!post) {
       return res.status(404).json({ error: "Post not found" });
     }
@@ -368,7 +327,7 @@ router.post("/:postId/vote", async (req, res) => {
         console.log("Removing old vote");
         console.log("Existing Vote:", existingVote);
 
-        const updatedPoll = await Post.findOneAndUpdate(
+        const updatedPoll = await Reply.findOneAndUpdate(
           { replyId: postId },
           {
             $pull: {
@@ -388,7 +347,7 @@ router.post("/:postId/vote", async (req, res) => {
     console.log("userId: " + userId);
     console.log("option: " + option);
     // Find the post containing the replyId
-    const updatedPoll = await Post.findOneAndUpdate(
+    const updatedPoll = await Reply.findOneAndUpdate(
       { replyId: postId },
       {
         $push: {

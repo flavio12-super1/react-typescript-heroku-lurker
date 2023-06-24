@@ -23,6 +23,8 @@ function Lurker(props) {
   const myEmail = localStorage.getItem("email");
   const userID = localStorage.getItem("userID");
 
+  const [self, setSelf] = useState(false);
+
   let navigate = useNavigate();
   console.log("reloaded lurker.js");
   useEffect(() => {
@@ -73,6 +75,7 @@ function Lurker(props) {
       .post(`${uri}/userData`)
       .then((response) => {
         console.log(response);
+        setSelf(response.data);
         setFriendRequest((notification) => [
           ...response.data.notifications.map((user) => ({
             email: user.email,
@@ -141,6 +144,7 @@ function Lurker(props) {
           setCurrentlyViewing,
           denyRequest,
           acceptRequest,
+          self,
         }}
       >
         <Nav />

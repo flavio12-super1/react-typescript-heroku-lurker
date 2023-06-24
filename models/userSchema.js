@@ -129,6 +129,23 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  image: { type: String },
+  pollOptions: [
+    {
+      options: [{ type: Object }],
+      votes: [
+        {
+          userID: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+          },
+          option: {
+            type: String,
+          },
+        },
+      ],
+    },
+  ],
   replyId: {
     type: String,
   },
@@ -139,7 +156,7 @@ const postSchema = new mongoose.Schema({
   replies: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Reply",
+      ref: "Post",
     },
   ],
 });
