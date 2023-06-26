@@ -4,6 +4,9 @@
 .alighnItemsCenter {
   align-items: center;
 }
+.justifyContentCenter {
+  justify-content: center;
+}
 .width100 {
   width: 100%;
 }
