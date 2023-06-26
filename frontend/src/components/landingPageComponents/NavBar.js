@@ -43,6 +43,7 @@ const Navbar = () => {
       {isSideNavOpen && (
         <div className="sideNav">
           <div id="innerSideNavContainer">
+            <div id="message">Welcome</div>
             <div className="displayFlex buttonContainer alighnItemsSelfStart flexDirectionColumn ">
               <Link to="/login" className="sideNavLink">
                 <div className="">Login</div>

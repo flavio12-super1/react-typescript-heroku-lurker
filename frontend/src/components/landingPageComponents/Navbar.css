@@ -9,6 +9,14 @@
   width: 800px;
   align-items: center;
   justify-content: center;
+  padding-right: 10px;
+}
+
+#message {
+  height: 55px;
+  align-items: center;
+  display: flex;
+  font-size: 24px;
 }
 
 #navIcon {
@@ -34,12 +42,14 @@
 }
 
 .sideNav {
-  position: fixed;
-  top: 0;
-  right: 0;
+  background-color: #02010491;
   bottom: 0;
-  background-color: black;
+  position: fixed;
+  right: 0;
+  top: 0;
   width: 330px;
+  backdrop-filter: blur(3px);
+  border-left: solid #378cc9;
 }
 
 #innerSideNavContainer {
@@ -48,10 +58,15 @@
 }
 
 #closeBtnContainer {
-  position: absolute;
-  top: 0;
-  right: 0;
   margin: 20px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  width: 55px;
+  justify-content: center;
 }
 
 @media (max-width: 768px) {
