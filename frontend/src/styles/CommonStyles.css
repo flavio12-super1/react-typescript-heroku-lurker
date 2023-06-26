@@ -1,11 +1,20 @@
 .displayFlex {
   display: flex;
 }
+.flexDirectionColumn {
+  flex-direction: column;
+}
 .alighnItemsCenter {
   align-items: center;
 }
+.alighnItemsSelfStart {
+  align-items: self-start;
+}
 .justifyContentCenter {
   justify-content: center;
+}
+.justifyContentSpaceBetween {
+  justify-content: space-between;
 }
 .width100 {
   width: 100%;

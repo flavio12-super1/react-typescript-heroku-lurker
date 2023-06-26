@@ -3,7 +3,6 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
-  border: solid;
 }
 
 .innerNavContainer {
@@ -25,6 +24,49 @@
   flex-grow: 1;
 }
 
+.navLink {
+  margin: 5px;
+}
+
+#more {
+  display: none;
+  width: 32px;
+}
+
+.sideNav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: black;
+  width: 330px;
+}
+
+#innerSideNavContainer {
+  padding: 20px;
+  position: relative;
+}
+
+#closeBtnContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 20px;
+}
+
+@media (max-width: 768px) {
+  #navButtonsContainer {
+    display: none;
+  }
+  #more {
+    display: block;
+  }
+}
+@media (min-width: 768px) {
+  .sideNav {
+    display: none;
+  }
+}
 /* .navbar {
   background-color: #333;
   color: #fff;
