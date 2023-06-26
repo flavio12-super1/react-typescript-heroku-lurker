@@ -7,7 +7,6 @@ function LandingPage() {
       <Navbar />
       <div>
         <h1>A Place For Nerds!!!</h1>
-    
       </div>
     </div>
   );
