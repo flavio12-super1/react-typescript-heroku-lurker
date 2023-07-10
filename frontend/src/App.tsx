@@ -6,10 +6,11 @@ import SocketContext from "./config/SocketContext";
 import io from "socket.io-client";
 import axios from "./config/axiosConfig";
 
-import About from "./components/landingPageComponents/About";
 import LandingPage from "./components/LandingPage";
-import Login from "./components/Login";
-import Register from "./components/Register";
+import About from "./components/landingPageComponents/About";
+import Login from "./components/landingPageComponents/Login";
+
+import Register from "./components/landingPageComponents/Register";
 import Lurker from "./components/Lurker";
 import Feed from "./components/Feed";
 import Chat from "./components/Chat";
