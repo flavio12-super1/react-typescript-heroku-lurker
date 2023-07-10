@@ -5,11 +5,32 @@
   padding: 20px;
 }
 
+.width150 {
+  width: 150px;
+}
+#openBtn {
+  width: 150px;
+  border: solid;
+  height: 50px;
+  border-radius: 25px;
+  background-color: black;
+  font-size: 24px;
+  color: white;
+  box-sizing: border-box;
+}
+
 .innerNavContainer {
   width: 800px;
   align-items: center;
   justify-content: center;
-  padding-right: 10px;
+  /* padding-right: 10px; */
+  background-color: #0000009e;
+  border: solid;
+  overflow: auto;
+  padding: 5px;
+}
+a {
+  color: white;
 }
 
 #message {
@@ -34,6 +55,10 @@
 
 .navLink {
   margin: 5px;
+  font-size: 18px;
+}
+.navLink:hover {
+  text-decoration: underline;
 }
 
 #more {

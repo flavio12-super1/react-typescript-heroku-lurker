@@ -2,17 +2,18 @@ import React from "react";
 import Navbar from "./landingPageComponents/NavBar";
 import "../styles/LandingPage.css";
 
-function LandingPage() {
+function LandingPage(props) {
   return (
-    <div>
+    <div id="landingPage">
       <Navbar />
       <div id="container-one">
         <div id="inner-container-one">
-          <h1>A Place For Nerds</h1>
+          {/* <h1>A place for Nerds</h1>
           <div id="description">
             Our mission is to give users full control of what content they
             decide to interact with, that includes your ads.
-          </div>
+          </div> */}
+          {props.page}
         </div>
       </div>
     </div>

@@ -1,6 +1,8 @@
 .appContainer {
   height: 100vh;
   width: 100vw;
+  background-image: url(https://media.discordapp.net/attachments/990816877691437086/1127759497008521287/hacker_aka_flavio_spider_web_black_background_spiders_on_spider_86c1be68-c1af-4182-a4d8-f963e46f5692.png?width=1331&height=1331);
+  background-size: cover;
 }
 .App {
   align-items: center;

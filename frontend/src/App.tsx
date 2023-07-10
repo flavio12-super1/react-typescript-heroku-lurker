@@ -6,10 +6,10 @@ import SocketContext from "./config/SocketContext";
 import io from "socket.io-client";
 import axios from "./config/axiosConfig";
 
+import About from "./components/landingPageComponents/About";
 import LandingPage from "./components/LandingPage";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import Home from "./components/Home";
 import Lurker from "./components/Lurker";
 import Feed from "./components/Feed";
 import Chat from "./components/Chat";
@@ -62,12 +62,12 @@ function App() {
     <div className="appContainer">
       <SocketContext.Provider value={{ socket, uri }}>
         <Routes>
-          {/* <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} /> */}
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/register" element={<Home page={<Register />} />} />
-          <Route path="/login" element={<Home page={<Login />} />} />
-
+          <Route path="/" element={<LandingPage page={<About />} />} />
+          <Route
+            path="/register"
+            element={<LandingPage page={<Register />} />}
+          />
+          <Route path="/login" element={<LandingPage page={<Login />} />} />
           <Route path="/lurker" element={<Lurker page={<Feed />} />} />
           <Route
             path="/lurker/explore"

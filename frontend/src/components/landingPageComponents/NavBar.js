@@ -15,12 +15,15 @@ const Navbar = () => {
   return (
     <div id="navContainer">
       <div className="displayFlex innerNavContainer justifyContentSpaceBetween">
-        <div className="displayFlex alighnItemsCenter">
-          <img src={spider} alt="" id="navIcon" />
-          <div id="lurker">Lurker</div>
-        </div>
+        <Link to="/">
+          <div className="displayFlex alighnItemsCenter width150">
+            <img src={spider} alt="" id="navIcon" />
+            <div id="lurker">Lurker</div>
+          </div>
+        </Link>
+
         <div
-          className="displayFlex buttonContainer alighnItemsCenter justifyContentCenter"
+          className="displayFlex buttonContainer alighnItemsCenter justifyContentCenter width150"
           id="navButtonsContainer"
         >
           <Link to="/login" className="navLink">
@@ -28,12 +31,15 @@ const Navbar = () => {
           </Link>
           <div>|</div>
           <Link to="/register" className="navLink">
-            <div className="">register</div>
+            <div className="">Register</div>
           </Link>
         </div>
-        <div className="displayFlex alighnItemsCenter justifyContentCenter">
+        <div
+          className="displayFlex alighnItemsCenter justifyContentCenter width150"
+          id="openBtn"
+        >
           <Link to="/lurker">
-            <div className="">open lurker</div>
+            <div className="">Open Lurker</div>
           </Link>
           <div onClick={handleMore}>
             <img id="more" src={more} alt="more" />
@@ -50,7 +56,7 @@ const Navbar = () => {
               </Link>
               <div>━︎</div>
               <Link to="/register" className="sideNavLink">
-                <div className="">register</div>
+                <div className="">Register</div>
               </Link>
             </div>
             <div id="closeBtnContainer">
@@ -74,49 +80,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-// import React, { useState } from "react";
-// import { Link } from "react-router-dom";
-// import "./Navbar.css";
-// import spider from "../../images/spider.png";
-// import "../../styles/CommonStyles.css";
-// import more from "../lurker-icons/more.png";
-
-// const Navbar = () => {
-//   const handleMore = () => {
-//     alert("more");
-//   };
-
-//   return (
-//     <div id="navContainer">
-//       <div className="displayFlex innerNavContainer justifyContentSpaceBetween">
-//         <div className="displayFlex alighnItemsCenter">
-//           <img src={spider} alt="" id="navIcon" />
-//           <div id="lurker">Lurker</div>
-//         </div>
-//         <div
-//           className="displayFlex buttonContainer alighnItemsCenter justifyContentCenter"
-//           id="navButtonsContainer"
-//         >
-//           <Link to="/login" className="navLink">
-//             <div className="">Login</div>
-//           </Link>
-//           <div>|</div>
-//           <Link to="/register" className="navLink">
-//             <div className="">register</div>
-//           </Link>
-//         </div>
-//         <div className="displayFlex alighnItemsCenter justifyContentCenter">
-//           <Link to="/lurker">
-//             <div className="">open lurker</div>
-//           </Link>
-//           <div onClick={handleMore}>
-//             <img id="more" src={more} alt="more" />
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Navbar;
