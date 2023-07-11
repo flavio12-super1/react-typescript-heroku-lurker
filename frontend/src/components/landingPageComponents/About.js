@@ -120,6 +120,23 @@ function About() {
               </div>
             </div>
           </div>
+
+          <div className="reqContainer">
+            <div className="textThree">Lurker feed ("/lurker")</div>
+
+            <div className="reqContainerTexts">
+              <div>
+                <div className="textTwo">Update Create Post</div>
+                <div className="containerText">
+                  <div className="indivText">
+                    - Update the create post so that it uses slate js, should
+                    allow users to insert emojis, mentions, and images. Use code
+                    from slate-examples.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
