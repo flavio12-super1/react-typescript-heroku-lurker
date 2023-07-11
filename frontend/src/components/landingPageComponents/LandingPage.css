@@ -4,6 +4,15 @@
   flex-direction: column;
 }
 
+#aboutLurkerContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+#reqOuterContainerDiv {
+  overflow-y: scroll;
+}
+
 #aboutLurker {
   border-bottom: solid #d6cd4b;
 }
@@ -14,6 +23,7 @@
   padding: 20px;
   padding-top: 0px;
   flex-grow: 1;
+  overflow: auto;
 }
 #inner-container-one {
   width: 800px;
