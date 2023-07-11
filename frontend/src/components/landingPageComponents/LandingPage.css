@@ -27,15 +27,16 @@
 .textTwo {
   font-size: 18px;
   color: #9999ff;
+  margin-bottom: 5px;
 }
 
-#reqOuterContainer {
+.reqOuterContainer {
   width: 50%;
   border-bottom: solid #d6cd4b;
   margin-bottom: 10px;
-  max-width: 300px;
+  max-width: 500px;
 }
-#reqContainer {
+.reqContainer {
   padding-left: 5px;
   color: #81daff;
   padding-bottom: 5px;

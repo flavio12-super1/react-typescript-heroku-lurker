@@ -41,6 +41,12 @@ a {
   font-size: 24px;
   color: white;
 }
+
+.navLinksContainer {
+  color: white;
+  margin-top: 20px;
+}
+
 #closeBtn {
   display: flex;
   align-items: center;

@@ -59,7 +59,7 @@ const Navbar = () => {
         <div className="sideNav">
           <div id="innerSideNavContainer">
             <div id="message">Welcome</div>
-            <div className="displayFlex buttonContainer alighnItemsSelfStart flexDirectionColumn ">
+            <div className="displayFlex buttonContainer alighnItemsSelfStart flexDirectionColumn navLinksContainer">
               <Link to="/login" className="sideNavLink">
                 <div className="">Login</div>
               </Link>

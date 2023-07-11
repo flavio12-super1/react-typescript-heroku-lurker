@@ -32,13 +32,15 @@ const Register = () => {
   return (
     <div>
       <div className="textOne">Register</div>
-      <div id="reqOuterContainer">
+      <div className="reqOuterContainer">
         <div className="textTwo">Password must have at least:</div>
-        <div id="reqContainer">
-          <div className="passwordReq">- one uppercase letter</div>
-          <div className="passwordReq">- one lowercase letter</div>
-          <div className="passwordReq">- one digit</div>
-          <div className="passwordReq">- and is at least 8 characters long</div>
+        <div className="reqContainer">
+          <div className="containerText">- one uppercase letter</div>
+          <div className="containerText">- one lowercase letter</div>
+          <div className="containerText">- one digit</div>
+          <div className="containerText">
+            - and is at least 8 characters long
+          </div>
         </div>
       </div>
       <form onSubmit={handleSubmit}>
