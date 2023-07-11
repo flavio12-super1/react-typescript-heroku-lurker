@@ -13,7 +13,7 @@ const Navbar = () => {
   };
 
   const handleOpenLurker = () => {
-    window.location.href = "http://localhost:8000/lurker";
+    window.location.href = "/lurker";
   };
 
   return (
