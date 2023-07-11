@@ -52,6 +52,7 @@ function App() {
     });
     socket.on("connect_error", (err) => {
       console.log(`connect_error due to ${err.message}`);
+      // alert("connect_error due to invalid_token");
     });
     return () => {
       socket.off("connect");

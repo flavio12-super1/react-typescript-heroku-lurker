@@ -31,24 +31,35 @@ const Register = () => {
 
   return (
     <div>
-      <h1>Register</h1>
-      <div>
-        password must have at least one uppercase letter, one lowercase letter,
-        one digit, and is at least 8 characters long:
+      <div className="textOne">Register</div>
+      <div id="reqOuterContainer">
+        <div className="textTwo">Password must have at least:</div>
+        <div id="reqContainer">
+          <div className="passwordReq">- one uppercase letter</div>
+          <div className="passwordReq">- one lowercase letter</div>
+          <div className="passwordReq">- one digit</div>
+          <div className="passwordReq">- and is at least 8 characters long</div>
+        </div>
       </div>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email:</label>
+        <div className="displayFlex alighnItemsCenter">
+          <div className="formLabel">
+            <label>Email:</label>
+          </div>
           <input
             type="email"
             value={email}
+            placeholder="enter a valid email"
             onChange={(event) => setEmail(event.target.value)}
           />
         </div>
-        <div>
-          <label>Password:</label>
+        <div className="displayFlex alighnItemsCenter">
+          <div className="formLabel">
+            <label>Password:</label>
+          </div>
           <input
             type="password"
+            placeholder="enter a strong password : )"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
           />

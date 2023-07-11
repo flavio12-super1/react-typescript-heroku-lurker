@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, redirect } from "react-router-dom";
 import "./Navbar.css";
 import spider from "../../images/spider.png";
 import "../../styles/CommonStyles.css";
@@ -10,6 +10,10 @@ const Navbar = () => {
 
   const handleMore = () => {
     setIsSideNavOpen(!isSideNavOpen);
+  };
+
+  const handleOpenLurker = () => {
+    window.location.href = "http://localhost:8000/lurker";
   };
 
   return (
@@ -29,18 +33,23 @@ const Navbar = () => {
           <Link to="/login" className="navLink">
             <div className="">Login</div>
           </Link>
-          <div>|</div>
+          <div id="divider">|</div>
           <Link to="/register" className="navLink">
             <div className="">Register</div>
           </Link>
         </div>
-        <div
-          className="displayFlex alighnItemsCenter justifyContentCenter width150"
-          id="openBtn"
-        >
-          <Link to="/lurker">
-            <div className="">Open Lurker</div>
-          </Link>
+
+        <div className="displayFlex alighnItemsCenter ">
+          <div
+            className="displayFlex alighnItemsCenter justifyContentCenter width150"
+            id="openBtn"
+          >
+            {/* <Link to="/lurker"> */}
+            <div className="openBtn" onClick={handleOpenLurker}>
+              Open Lurker
+            </div>
+            {/* </Link> */}
+          </div>
           <div onClick={handleMore}>
             <img id="more" src={more} alt="more" />
           </div>
@@ -60,8 +69,8 @@ const Navbar = () => {
               </Link>
             </div>
             <div id="closeBtnContainer">
-              <button class="" onClick={handleMore}>
-                <svg class="" width="12" height="12" viewBox="0 0 12 12">
+              <div id="closeBtn" onClick={handleMore}>
+                <svg class="" width="24" height="24" viewBox="0 0 12 12">
                   <g fill="none" fill-rule="evenodd" aria-hidden="true">
                     <path d="M0 0h12v12H0"></path>
                     <path
@@ -70,7 +79,7 @@ const Navbar = () => {
                     ></path>
                   </g>
                 </svg>
-              </button>
+              </div>
             </div>
           </div>
         </div>

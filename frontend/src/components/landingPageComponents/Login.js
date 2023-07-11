@@ -48,25 +48,30 @@ const Login = () => {
 
   return (
     <div>
-      <h1>Login updated</h1>
-      <div>
-        password must have at least one uppercase letter, one lowercase letter,
-        one digit, and is at least 8 characters long:
+      <div className="textOne">Login</div>
+      <div className="textTwo">
+        Make sure you have created an account first : )
       </div>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email:</label>
+        <div className="displayFlex alighnItemsCenter">
+          <div className="formLabel">
+            <label>Email:</label>
+          </div>
           <input
             type="email"
             value={email}
+            placeholder="enter your email"
             onChange={(event) => setEmail(event.target.value)}
           />
         </div>
-        <div>
-          <label>Password:</label>
+        <div className="displayFlex alighnItemsCenter">
+          <div className="formLabel">
+            <label>Password:</label>
+          </div>
           <input
             type="password"
             value={password}
+            placeholder="dont forget your password 👀"
             onChange={(event) => setPassword(event.target.value)}
           />
         </div>

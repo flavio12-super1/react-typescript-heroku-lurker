@@ -25,7 +25,7 @@
   justify-content: center;
   /* padding-right: 10px; */
   background-color: #0000009e;
-  border: solid;
+  border: solid white;
   overflow: auto;
   padding: 5px;
 }
@@ -34,10 +34,23 @@ a {
 }
 
 #message {
-  height: 55px;
+  border-bottom: solid yellow;
+  height: 70px;
   align-items: center;
   display: flex;
   font-size: 24px;
+  color: white;
+}
+#closeBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  height: 32px;
+  width: 32px;
+  border: solid white;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 #navIcon {
@@ -47,6 +60,7 @@ a {
 #lurker {
   font-size: 24px;
   margin-left: 20px;
+  color: #b06fd1;
 }
 
 .buttonContainer {
@@ -56,6 +70,14 @@ a {
 .navLink {
   margin: 5px;
   font-size: 18px;
+  color: #9999ff;
+}
+#divider {
+  font-size: 28px;
+  color: #b06fd0;
+}
+.openBtn {
+  color: #81daff;
 }
 .navLink:hover {
   text-decoration: underline;
@@ -83,7 +105,7 @@ a {
 }
 
 #closeBtnContainer {
-  margin: 20px;
+  margin: 28px;
   position: absolute;
   right: 0;
   top: 0;
@@ -100,6 +122,9 @@ a {
   }
   #more {
     display: block;
+    background-color: white;
+    margin-left: 15px;
+    margin-right: 10px;
   }
 }
 @media (min-width: 768px) {
