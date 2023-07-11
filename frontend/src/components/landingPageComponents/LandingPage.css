@@ -4,6 +4,10 @@
   flex-direction: column;
 }
 
+#aboutLurker {
+  border-bottom: solid #d6cd4b;
+}
+
 #container-one {
   display: flex;
   justify-content: center;
@@ -25,20 +29,33 @@
   padding-bottom: 20px;
 }
 .textTwo {
-  font-size: 18px;
+  font-size: 20px;
   color: #9999ff;
   margin-bottom: 5px;
+}
+.textThree {
+  font-size: 22px;
+  color: orange;
+  margin-bottom: 5px;
+  border-bottom: solid #e33050;
+  max-width: 400px;
+  padding-bottom: 5px;
+}
+
+.reqContainerTexts {
+  margin-left: 15px;
 }
 
 .reqOuterContainer {
   border-bottom: solid #d6cd4b;
   margin-bottom: 10px;
-  max-width: 400px;
 }
 .reqContainer {
-  padding-left: 5px;
   color: #81daff;
-  padding-bottom: 5px;
+  border-bottom: solid green;
+  border-left: solid green;
+  margin-bottom: 20px;
+  padding: 10px;
 }
 .formLabel {
   width: 75px;
