@@ -35,9 +35,7 @@ function About() {
               <div className="indivText">- one digit</div>
             </div>
             <div className="containerText">
-              <div className="indivText">
-                - and is at least 8 characters long
-              </div>
+              <div className="indivText">- update colors</div>
             </div>
           </div>
         </div>
