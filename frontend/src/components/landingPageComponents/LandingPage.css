@@ -8,9 +8,10 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
 }
 #reqOuterContainerDiv {
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
 }
 
 #aboutLurker {
