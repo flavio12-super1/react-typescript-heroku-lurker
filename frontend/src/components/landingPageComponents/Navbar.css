@@ -84,6 +84,7 @@ a {
 }
 .openBtn {
   color: #81daff;
+  cursor: pointer;
 }
 .navLink:hover {
   text-decoration: underline;

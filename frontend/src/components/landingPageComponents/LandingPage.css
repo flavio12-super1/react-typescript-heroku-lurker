@@ -31,10 +31,9 @@
 }
 
 .reqOuterContainer {
-  width: 50%;
   border-bottom: solid #d6cd4b;
   margin-bottom: 10px;
-  max-width: 500px;
+  max-width: 400px;
 }
 .reqContainer {
   padding-left: 5px;
@@ -44,4 +43,15 @@
 .formLabel {
   width: 75px;
   color: #78cf68;
+}
+.containerText {
+  border-left: solid #cd15d8;
+  border-bottom: solid #cd15d8;
+  margin-bottom: 5px;
+  padding: 5px;
+  padding-bottom: 0px;
+  background: linear-gradient(45deg, rgb(0 0 0) 0%, rgba(41, 47, 143, 1) 100%);
+}
+.indivText {
+  margin-bottom: 5px;
 }

@@ -35,11 +35,17 @@ const Register = () => {
       <div className="reqOuterContainer">
         <div className="textTwo">Password must have at least:</div>
         <div className="reqContainer">
-          <div className="containerText">- one uppercase letter</div>
-          <div className="containerText">- one lowercase letter</div>
-          <div className="containerText">- one digit</div>
           <div className="containerText">
-            - and is at least 8 characters long
+            <div className="indivText">- one uppercase letter</div>
+          </div>
+          <div className="containerText">
+            <div className="indivText">- one lowercase letter</div>
+          </div>
+          <div className="containerText">
+            <div className="indivText">- one digit</div>
+          </div>
+          <div className="containerText">
+            <div className="indivText">- and is at least 8 characters long</div>
           </div>
         </div>
       </div>
