@@ -1085,6 +1085,8 @@ const getConversation = require("./routes/getConversation");
 app.use("/getConversation", verifyJWT, getConversation);
 const getMessages = require("./routes/getMessages");
 app.use("/getMessages", verifyJWT, getMessages);
+const handleTasks = require("./routes/handleTasks");
+app.use("/handleTasks", handleTasks);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
