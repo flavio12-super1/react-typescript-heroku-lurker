@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import axiosInstance from "../config/axiosConfig";
 import { Link } from "react-router-dom";
 import { UserContext } from "./Lurker";
-import spider from "./lurker-icons/spider2.png";
+import spider from "../images/spider.png";
 import servers from "./lurker-icons/servers.png";
 import groups from "./lurker-icons/groups.png";
 import messages from "./lurker-icons/messages.png";
@@ -49,11 +49,7 @@ function Nav() {
           <div>
             <Link to="/lurker/" className="navStyle">
               <div className="divImg">
-                <img
-                  className="navIcons"
-                  src="https://upload-image-demo-fh.s3.us-west-1.amazonaws.com/28ed1b7ba72c2599ee60bc7edaac7b3ae6344805346d68750311c3c5e3e4007b?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIA53XOIF5EVVI62AN3%2F20230610%2Fus-west-1%2Fs3%2Faws4_request&X-Amz-Date=20230610T044252Z&X-Amz-Expires=604800&X-Amz-Signature=c81b15067ec2315ac8ad75131c2778d196ce491b29828aac665aae5a1da6f761&X-Amz-SignedHeaders=host&x-id=GetObject"
-                  alt="spider"
-                />
+                <img className="navIcons" src={spider} alt="spider" />
               </div>
             </Link>
           </div>
