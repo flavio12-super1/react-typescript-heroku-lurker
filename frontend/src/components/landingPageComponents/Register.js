@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "./styles/Register.css";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -32,19 +33,19 @@ const Register = () => {
   return (
     <div>
       <div className="textOne">Register</div>
-      <div className="reqOuterContainer">
+      <div id="reqOuterDiv">
         <div className="textTwo">Password must have at least:</div>
-        <div className="reqContainer">
-          <div className="containerText">
+        <div id="reqInnerDiv">
+          <div className="containerTextDiv">
             <div className="indivText">- one uppercase letter</div>
           </div>
-          <div className="containerText">
+          <div className="containerTextDiv">
             <div className="indivText">- one lowercase letter</div>
           </div>
-          <div className="containerText">
+          <div className="containerTextDiv">
             <div className="indivText">- one digit</div>
           </div>
-          <div className="containerText">
+          <div className="containerTextDiv">
             <div className="indivText">- and is at least 8 characters long</div>
           </div>
         </div>

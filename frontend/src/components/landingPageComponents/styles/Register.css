@@ -1,0 +1,11 @@
+#reqOuterDiv {
+  margin-bottom: 10px;
+  padding-right: 10px;
+}
+#reqInnerDiv {
+  color: #81daff;
+}
+.containerTextDiv {
+  border-left: solid #cd15d8;
+  padding: 5px 5px 0;
+}

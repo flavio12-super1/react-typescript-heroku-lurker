@@ -9,6 +9,7 @@ import axios from "./config/axiosConfig";
 import LandingPage from "./components/LandingPage";
 import About from "./components/landingPageComponents/About";
 import Login from "./components/landingPageComponents/Login";
+import Disclosure from "./components/landingPageComponents/Disclosure";
 
 import Register from "./components/landingPageComponents/Register";
 import Lurker from "./components/Lurker";
@@ -70,12 +71,16 @@ function App() {
             element={<LandingPage page={<Register />} />}
           />
           <Route path="/login" element={<LandingPage page={<Login />} />} />
+          <Route
+            path="/disclosure"
+            element={<LandingPage page={<Disclosure />} />}
+          />
+
           <Route path="/lurker" element={<Lurker page={<Feed />} />} />
           <Route
             path="/lurker/explore"
             element={<Lurker page={<Explore />} />}
           />
-
           <Route
             path="/lurker/notifications"
             element={<Lurker page={<Notifications />} />}
