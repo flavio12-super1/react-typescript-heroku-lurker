@@ -27,7 +27,7 @@ function About() {
         <div className="textOne">A place for Nerds</div>
         <div className="textTwo">
           Our mission is to give users full control of what content they decide
-          to interact with, that includes your ads.
+          to interact with, that includes your ads
         </div>
       </div>
 
