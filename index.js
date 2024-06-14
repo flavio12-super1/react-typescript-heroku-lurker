@@ -1161,19 +1161,19 @@ app.get("/logout", function (req, res) {
   });
 });
 
-const Redis = require("ioredis");
-const redis = new Redis();
+// const Redis = require("ioredis");
+// const redis = new Redis();
 
-async function main() {
-  // set an array in Redis
-  await redis.lpush("myArray", "element1");
+// async function main() {
+//   // set an array in Redis
+//   await redis.lpush("myArray", "element1");
 
-  // get the array from Redis
-  const myArray = await redis.lrange("myArray", 0, -1);
-  console.log(myArray); // ["element3", "element2", "element1"]
-}
+//   // get the array from Redis
+//   const myArray = await redis.lrange("myArray", 0, -1);
+//   console.log(myArray); // ["element3", "element2", "element1"]
+// }
 
-main().catch(console.error);
+// main().catch(console.error);
 
 server.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
